@@ -13,7 +13,7 @@ map['A': "1", 'B': "00", 'C': "010", 'D', "011"]
 
 The map can be used for decode the encoded byte sequence
 */
-func HuffmanEncode(data []byte) ([]byte, map[byte]string) {
+func HuffmanEncode(data []byte) ([]byte, Code) {
 	freqs := symbolsFrequency(data)
 	codeTable := encode(freqs)
 
@@ -26,10 +26,10 @@ func HuffmanEncode(data []byte) ([]byte, map[byte]string) {
 
 // HuffmanDecode decodes an encoded string by HuffmanEncode function.
 //
-// It receives a byte sequence and a map[byte]string code table. This
+// It receives a byte sequence and a map[byte]string Code table. This
 // parameters is returned by HuffmanEncode function. It also returns a byte
 // sequence for the passed encoded byte sequence
-func HuffmanDecode(data []byte, codeTable map[byte]string) []byte {
+func HuffmanDecode(data []byte, codeTable Code) []byte {
 	var decoded []byte
 	reversedTable := reverseCode(codeTable)
 

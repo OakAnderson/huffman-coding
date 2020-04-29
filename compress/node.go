@@ -4,9 +4,8 @@ import (
 	"fmt"
 )
 
-// code is a not importes type that implements a map[byte]String
-// it is used to store huffman tree codes
-type code map[byte]string
+// Code is a map used to store got symbols and respective huffman codes
+type Code map[byte]string
 
 // node is a struct that stores huffman tree nodes information
 type node struct {
@@ -23,7 +22,7 @@ func (n node) String() string {
 }
 
 // find is a recursive method that find a symbol in the tree and returns its
-// code in string and true if it found the symbol, empty string and false if
+// Code in string and true if it found the symbol, empty string and false if
 // not
 func (n *node) find(search node) (string, bool) {
 	if n.b == search.b {
@@ -43,8 +42,8 @@ func (n *node) find(search node) (string, bool) {
 }
 
 // encode is the core of huffman's algorithm. Here the symbols is putted on
-// a huffman tree and returns the code table for the sequence of frequencies
-func encode(freqs frequencies) code {
+// a huffman tree and returns the Code table for the sequence of frequencies
+func encode(freqs frequencies) Code {
 	tree := make(frequencies, len(freqs))
 	copy(tree, freqs)
 
@@ -66,9 +65,36 @@ func encode(freqs frequencies) code {
 // reverseCode is used for decode, when you got the string code and wants the
 // byte
 func reverseCode(table code) map[string]byte {
+func (c Code) Reverse() map[string]byte {
 	newTable := make(map[string]byte)
 	for k, v := range table {
 		newTable[v] = k
 	}
 	return newTable
+}
+
+// Keys is a
+func (c Code) Keys() []byte {
+	keys := make([]byte, len(c))
+
+	var i int
+	for k := range c {
+		keys[i] = k
+		i++
+	}
+
+	return keys
+}
+
+// Values TODO
+func (c Code) Values() []string {
+	keys := make([]string, len(c))
+
+	var i int
+	for _, v := range c {
+		keys[i] = v
+		i++
+	}
+
+	return keys
 }

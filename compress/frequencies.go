@@ -44,10 +44,10 @@ func (freqs frequencies) contains(b byte) (bool, int) {
 }
 
 // getNodes receives a root node and for every byte in frequencies slice it
-// will save into a map[byte]string type, where the value is the code for
+// will save into a map[byte]string type, where the value is the Code for
 // respective key or byte
-func (freqs frequencies) getCodes(root node) (c code) {
-	c = make(code)
+ func (freqs frequencies) getCodes(root node) (c Code) {
+	c = make(Code)
 	for _, n := range freqs {
 		c[n.b], _ = root.find(n)
 	}
