@@ -62,12 +62,11 @@ func encode(freqs frequencies) Code {
 	return freqs.getCodes(tree[0])
 }
 
-// reverseCode is used for decode, when you got the string code and wants the
+// Reverse is used for decode, when you have the string Code and wants the
 // byte
-func reverseCode(table code) map[string]byte {
 func (c Code) Reverse() map[string]byte {
 	newTable := make(map[string]byte)
-	for k, v := range table {
+	for k, v := range c {
 		newTable[v] = k
 	}
 	return newTable

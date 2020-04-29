@@ -31,7 +31,7 @@ func HuffmanEncode(data []byte) ([]byte, Code) {
 // sequence for the passed encoded byte sequence
 func HuffmanDecode(data []byte, codeTable Code) []byte {
 	var decoded []byte
-	reversedTable := reverseCode(codeTable)
+	reversedTable := codeTable.Reverse()
 
 	var word string
 	for _, v := range data {
